@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>सरकारी सहायक (Sarkari Sahayak) — Powered by Sarvam AI</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏛️</text></svg>">
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-area">
+        <div class="emblem-icon">🏛️</div>
+        <div>
+          <div class="brand-title">सरकारी सहायक (Sarkari Sahayak)</div>
+          <div class="brand-subtitle">Voice-First Indic Welfare Navigator & CPGRAMS Legal Grievance Drafter • Powered by Sarvam AI</div>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <div class="status-badge" id="api-status-badge">
+          <span class="status-dot inactive" id="status-dot"></span>
+          <span id="api-status-text">Checking API...</span>
+        </div>
+        <button class="btn-settings" id="btn-settings">⚙️ Settings / API Key</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <nav class="tabs-nav">
+    <div class="tabs-container">
+      <button class="tab-btn active" data-tab="voice-tab">🎙️ Voice Sahayak (बोलकर बताएं)</button>
+      <button class="tab-btn" data-tab="grievance-tab">⚖️ CPGRAMS Grievance Drafter (कानूनी प्रारूप)</button>
+      <button class="tab-btn" data-tab="schemes-tab">📑 Welfare Scheme Finder (योजना पात्रता)</button>
+      <button class="tab-btn" data-tab="scanner-tab">🪪 Smart Document Scanner (दस्तावेज विश्लेषक)</button>
+      <button class="tab-btn" data-tab="directory-tab">📚 Schemes Catalog (योजना निर्देशिका)</button>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="main-content">
+
+    <!-- 1. Voice Sahayak Tab -->
+    <section class="tab-panel active" id="voice-tab">
+      <div class="voice-hero">
+        <div style="font-size: 1.25rem; font-weight: 700; color: #1e3a8a; margin-bottom: 0.25rem;">
+          अपनी भाषा में बोलें — हम आपकी आवाज़ को सरकारी समाधान में बदलेंगे
+        </div>
+        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">
+          Powered by Sarvam <strong>Saaras v4</strong> (Indic Speech Recognition) & <strong>Bulbul v4-flash</strong> (Natural Voice Synthesis)
+        </p>
+
+        <div style="max-width: 300px; margin: 0 auto 1rem;">
+          <label class="form-label" style="text-align: center;">अपनी भाषा चुनें (Select Language):</label>
+          <select id="voice-language-select">
+            <option value="hi-IN" selected>हिन्दी (Hindi)</option>
+            <option value="ta-IN">தமிழ் (Tamil)</option>
+            <option value="te-IN">తెలుగు (Telugu)</option>
+            <option value="bn-IN">বাংলা (Bengali)</option>
+            <option value="mr-IN">मराठी (Marathi)</option>
+            <option value="gu-IN">ગુજરાતી (Gujarati)</option>
+            <option value="kn-IN">ಕನ್ನಡ (Kannada)</option>
+            <option value="pa-IN">ਪੰਜਾਬੀ (Punjabi)</option>
+            <option value="ml-IN">മലയാളം (Malayalam)</option>
+            <option value="od-IN">ଓଡ଼ିଆ (Odia)</option>
+            <option value="en-IN">English (India)</option>
+          </select>
+        </div>
+
+        <button class="mic-circle" id="btn-record-voice" title="Click to Record Voice">
+          🎙️
+        </button>
+
+        <div class="mic-label" id="voice-status-text">Click Microphone to Start Speaking</div>
+        <span class="status-badge" id="voice-timer" style="display:none; background:#fee2e2; color:#dc2626; margin-top:0.5rem;">00:00</span>
+        <div class="mic-subtext" style="margin-top:0.5rem;">Speak naturally — Hinglish & colloquial dialects supported</div>
+
+        <!-- Sample Preset Chips -->
+        <div class="sample-chips">
+          <span style="font-size: 0.85rem; font-weight: 600; color: #475569; align-self: center;">Try Instant Examples:</span>
+          <button class="chip" data-sample="मेरा पीएम किसान सम्मान निधि का पैसा पिछले 6 महीने से नहीं आया है, पटवारी सुन नहीं रहा और बैंक में DBT इनएक्टिव बता रहे हैं।">🌾 PM-Kisan DBT Issue (Hindi)</button>
+          <button class="chip" data-sample="गांव में 10 दिनों से बिजली का ट्रांसफार्मर जल गया है, जेई को तीन बार शिकायत की पर कोई सुनवाई नहीं हुई, खेती का पानी बंद है।">⚡ Burnt Transformer Grievance (Hindi)</button>
+          <button class="chip" data-sample="राशन कोटेदार अंत्योदय राशन कार्ड होने के बावजूद प्रति यूनिट 2 किलो कम गेहूं दे रहा है और विरोध करने पर नाम काटने की धमकी देता है।">🍚 Ration Shop Shortage (Hindi)</button>
+          <button class="chip" data-sample="Drinking water from municipal tap in Ward 12 is contaminated with sewer leakage for 5 days, causing severe sickness.">🚰 Contaminated Water Supply (English)</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📝 Spoken / Entered Statement</div>
+        </div>
+        <textarea id="voice-input-text" rows="3" placeholder="Your spoken text will appear here automatically via Sarvam Saaras v4, or you can type directly..."></textarea>
+        <div style="margin-top: 1rem; display: flex; justify-content: flex-end; gap: 0.75rem;">
+          <button class="btn-primary" id="btn-analyze-voice">
+            ⚡ Process with Sarvam AI Agent
+          </button>
+        </div>
+      </div>
+
+      <div id="voice-results-area"></div>
+    </section>
+
+    <!-- 2. CPGRAMS Grievance Drafter Tab -->
+    <section class="tab-panel" id="grievance-tab">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">⚖️ Official CPGRAMS Grievance Petition Drafter</div>
+          <span class="status-badge" style="background:#eff6ff; color:#1e3a8a;">DARPG & Citizen Charter Standards</span>
+        </div>
+        <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:1.25rem;">
+          Converts conversational citizen complaints into structured, cited legal petitions with statutory provisions, target ministries, and mandatory resolution deadlines.
+        </p>
+
+        <div class="grid-3">
+          <div class="form-group">
+            <label class="form-label">Citizen / Complainant Name:</label>
+            <input type="text" id="citizen-name" value="Ramesh Kumar" placeholder="e.g. Ramesh Kumar">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Village / Ward / District & State:</label>
+            <input type="text" id="citizen-location" value="Gram Kalyanpur, District Varanasi, UP" placeholder="e.g. Varanasi, Uttar Pradesh">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Contact Mobile Number:</label>
+            <input type="text" id="citizen-phone" value="+91 98765 43210" placeholder="e.g. +91 98765 43210">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Describe the Public Service Grievance in Detail (अपनी समस्या विस्तार से लिखें):</label>
+          <textarea id="grievance-text-input" rows="4" placeholder="e.g., हमारे ग्राम कल्याणपुर में मुख्य मार्ग का 25 KVA बिजली ट्रांसफार्मर पिछले 12 दिनों से जला हुआ है। कनिष्ठ अभियंता (JE) और सब-स्टेशन को लिखित सूचना दी गई परंतु कोई संज्ञान नहीं लिया गया..."></textarea>
+        </div>
+
+        <button class="btn-saffron" id="btn-draft-grievance">
+          📜 Generate Formal CPGRAMS Petition
+        </button>
+      </div>
+
+      <!-- Result Card -->
+      <div class="card" id="grievance-result-card" style="display:none; border-top: 4px solid var(--saffron);">
+        <div class="card-header">
+          <div class="card-title">📋 Generated Statutory Grievance Petition</div>
+          <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+            <span class="status-badge" id="ref-badge" style="background:#dbeafe; color:#1e40af;">Ref: CPG/2026/001</span>
+            <span class="status-badge" id="ministry-badge" style="background:#fef3c7; color:#92400e;">Ministry of Power</span>
+            <span class="status-badge" id="timeframe-badge" style="background:#fee2e2; color:#991b1b;">Timeframe: 48h</span>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:0.5rem; margin-bottom:1rem; flex-wrap:wrap;">
+          <button class="btn-outline" id="btn-copy-hi">📋 Copy Hindi Petition</button>
+          <button class="btn-outline" id="btn-copy-en">📋 Copy English Petition</button>
+          <button class="btn-outline" id="btn-copy-cpgrams">📋 Copy CPGRAMS Portal Text</button>
+          <button class="btn-outline" id="btnPrintPetition">🖨️ Print / Save PDF</button>
+        </div>
+
+        <div class="grid-2">
+          <div>
+            <div style="font-weight:700; color:#1e3a8a; margin-bottom:0.5rem;">📄 हिन्दी प्रारूप (स्थानीय प्रशासन / तहसील हेतु)</div>
+            <div class="petition-box" id="petition-viewer-hi"></div>
+          </div>
+          <div>
+            <div style="font-weight:700; color:#1e3a8a; margin-bottom:0.5rem;">📄 English Petition (For CPGRAMS Portal / Central Authority)</div>
+            <div class="petition-box" id="petition-viewer-en"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Welfare Scheme Finder Tab -->
+    <section class="tab-panel" id="schemes-tab">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📑 Citizen Profile & Scheme Eligibility Matcher</div>
+        </div>
+        <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:1.25rem;">
+          Enter socio-economic parameters or load from scanned documents to match against 15+ Central & State welfare initiatives.
+        </p>
+
+        <form id="profile-form">
+          <div class="grid-3">
+            <div class="form-group">
+              <label class="form-label">Citizen Age (आयु):</label>
+              <input type="number" id="prof-age" value="34" min="1" max="110">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Gender (लिंग):</label>
+              <select id="prof-gender">
+                <option value="male" selected>Male (पुरुष)</option>
+                <option value="female">Female (महिला)</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Occupation (व्यवसाय):</label>
+              <select id="prof-occupation">
+                <option value="farmer" selected>Farmer / Small Cultivator (किसान)</option>
+                <option value="street_vendor">Street Vendor / Hawker (रेहड़ी-पटरी)</option>
+                <option value="carpenter">Artisan / Carpenter / Blacksmith (विश्वकर्मा कारीगर)</option>
+                <option value="laborer">Daily Wage Laborer (मनरेगा मजदूर)</option>
+                <option value="self_employed">Small Shopkeeper / Self Employed</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid-3">
+            <div class="form-group">
+              <label class="form-label">Annual Family Income (वार्षिक आय ₹ Lakhs):</label>
+              <input type="number" id="prof-income" value="1.2" step="0.1" min="0">
+            </div>
+
+            <div class="form-group" style="padding-top:1.8rem;">
+              <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+                <input type="checkbox" id="prof-land" checked style="width:auto;">
+                <span>Has Agricultural Land (कृषि भूमि धारक)</span>
+              </label>
+            </div>
+
+            <div class="form-group" style="padding-top:1.8rem;">
+              <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+                <input type="checkbox" id="prof-rural" checked style="width:auto;">
+                <span>Rural Resident (ग्रामीण निवासी)</span>
+              </label>
+            </div>
+          </div>
+
+          <div style="margin-bottom:1rem;">
+            <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+              <input type="checkbox" id="prof-taxpayer" style="width:auto;">
+              <span>Pays Income Tax (आयकर दाता)</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn-primary">
+            🔍 Check Eligible Welfare Schemes
+          </button>
+        </form>
+      </div>
+
+      <div id="schemes-container"></div>
+    </section>
+
+    <!-- 4. Smart Document Scanner Tab -->
+    <section class="tab-panel" id="scanner-tab">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">🪪 Smart Citizen Document Intelligence (Sarvam Vision / OCR)</div>
+        </div>
+        <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:1.25rem;">
+          Upload or capture a photo of an Aadhaar Card, Ration Card, Land Record (Khasra-Khatauni), or Utility Bill to extract verified identity parameters automatically.
+        </p>
+
+        <div style="border: 2px dashed #cbd5e1; border-radius: 12px; padding: 2.5rem; text-align: center; background: #fafafa; margin-bottom: 1.5rem;">
+          <div style="font-size: 3rem; margin-bottom: 0.5rem;">📸</div>
+          <div style="font-weight: 600; font-size: 1.05rem; margin-bottom: 0.5rem;">Select Document Image or PDF</div>
+          <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1rem;">Supports JPG, PNG, PDF, or Camera Scans</p>
+          <input type="file" id="doc-file-input" accept="image/*,.pdf,.txt" style="max-width: 320px; margin: 0 auto; display: block;">
+        </div>
+
+        <button class="btn-primary" id="btn-upload-doc">
+          ⚡ Scan & Extract Citizen Profile
+        </button>
+      </div>
+
+      <div id="doc-scan-result"></div>
+    </section>
+
+    <!-- 5. Schemes Directory Tab -->
+    <section class="tab-panel" id="directory-tab">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📚 Indian Welfare Schemes Catalog & Application Guidelines</div>
+        </div>
+        <div id="directory-container"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Settings Modal -->
+  <div class="modal-overlay" id="settings-modal">
+    <div class="modal-box">
+      <h3 style="color:#1e3a8a; margin-bottom:0.75rem;">⚙️ Sarvam AI Configuration</h3>
+      <p style="font-size:0.85rem; color:#64748b; margin-bottom:1.25rem;">
+        Enter your Sarvam AI API subscription key from <a href="https://dashboard.sarvam.ai" target="_blank" style="color:#2563eb;">dashboard.sarvam.ai</a>.
+      </p>
+
+      <div class="form-group">
+        <label class="form-label">Sarvam API Subscription Key:</label>
+        <input type="password" id="sarvam-api-key-input" placeholder="Enter your key or leave blank for simulation mode">
+      </div>
+
+      <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:0.75rem; font-size:0.8rem; margin-bottom:1.25rem;">
+        <strong>Active Models:</strong><br>
+        • Speech-to-Text: <code>saaras:v4</code><br>
+        • Text-to-Speech: <code>bulbul:v4-flash</code><br>
+        • Translation: <code>mayura:v1</code><br>
+        • LLM: <code>sarvam-105b</code>
+      </div>
+
+      <div style="display:flex; justify-content:flex-end; gap:0.5rem;">
+        <button class="btn-outline" id="btn-close-settings">Cancel</button>
+        <button class="btn-primary" id="btn-save-settings">Save & Apply</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/js/recorder.js"></script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
